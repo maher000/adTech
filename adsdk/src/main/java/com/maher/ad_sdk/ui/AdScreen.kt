@@ -55,7 +55,6 @@ fun AdScreen(
         LaunchedEffect(Unit) {
             delay(adModel.closeDelay * 1000L)
             showCloseButton.value = true
-            onCloseCallback()
         }
 
         if (showCloseButton.value) {
