@@ -23,7 +23,7 @@ fun MainScreen() {
                     .fillMaxSize()
             ) {
                 composable("main") {
-                    MainScreen()
+                    HomeScreen()
                 }
             }
         }
