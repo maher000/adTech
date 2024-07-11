@@ -4,6 +4,7 @@ import androidx.activity.ComponentActivity
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import com.maher.ad_sdk.AdSdkImpl
+import com.maher.ad_sdk.AdSdkProvider
 import com.maher.ad_sdk.common.AD_MODEL_EXTRA
 import com.maher.ad_sdk.data.AdService
 import com.maher.ad_sdk.data.RetrofitProvider
@@ -20,7 +21,7 @@ class AdActivity : ComponentActivity() {
             finish()
             return
         }
-        val adSdk = AdSdkImpl(adService = RetrofitProvider.retrofit.create(AdService::class.java))
+        val adSdk = AdSdkProvider.adSdk
         adSdk.trackEvent(AdEventType.AD_OPEN)
         setContent {
             AdSdkTheme {

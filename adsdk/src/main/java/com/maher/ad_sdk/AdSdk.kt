@@ -20,7 +20,14 @@ interface AdSdk {
      * Throws an exception if the ad cannot be displayed.
      */
     @Throws(AdSdkException::class)
-    fun show(context: Context)
+    fun show(context: Context, adModel: AdModel)
+
+    /**
+     * Load the ad from the server.
+     * Throws an exception if the ad cannot be loaded.
+     */
+    @Throws(AdSdkException::class)
+    suspend fun load(): AdModel
 
 
     fun trackEvent(event: AdEventType)

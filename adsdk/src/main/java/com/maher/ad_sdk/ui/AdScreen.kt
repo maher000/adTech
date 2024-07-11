@@ -22,8 +22,6 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.maher.ad_sdk.AdSdk
 import com.maher.ad_sdk.AdSdkImpl
-import com.maher.ad_sdk.data.AdService
-import com.maher.ad_sdk.data.RetrofitProvider
 import com.maher.ad_sdk.domain.AdEventType
 import com.maher.ad_sdk.domain.AdModel
 import com.maher.ad_sdk.ui.theme.AdSdkTheme
@@ -84,14 +82,12 @@ private val fakeAdModel = AdModel(
 
 )
 
-private val fakeSdk: AdSdk =
-    AdSdkImpl(adService = RetrofitProvider.retrofit.create(AdService::class.java))
+private val fakeSdk: AdSdk = AdSdkImpl()
 
 @Preview
 @Composable
 fun AdScreenPreview() {
     AdSdkTheme {
-
         AdScreen(fakeAdModel, fakeSdk) {
 
         }

@@ -22,4 +22,3 @@ dependencyResolutionManagement {
 rootProject.name = "Ad Tech"
 include(":app")
 include(":adsdk")
-include(":adSdkApi")
