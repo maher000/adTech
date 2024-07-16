@@ -20,9 +20,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.maher.ad_sdk.AdSdk
-import com.maher.ad_sdk.AdSdkImpl
-import com.maher.ad_sdk.domain.AdEventType
 import com.maher.ad_sdk.domain.AdModel
 import com.maher.ad_sdk.ui.theme.AdSdkTheme
 import kotlinx.coroutines.delay
@@ -30,7 +27,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun AdScreen(
     adModel: AdModel,
-    adSdk: AdSdk,
+    onClickCallback: () -> Unit,
     onCloseCallback: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -42,7 +39,7 @@ fun AdScreen(
             .clickable {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(adModel.clickThrough))
                 context.startActivity(intent)
-                adSdk.trackEvent(AdEventType.AD_CLICK)
+                onClickCallback()
             }
     ) {
         Image(
@@ -60,7 +57,6 @@ fun AdScreen(
         if (showCloseButton.value) {
             Button(
                 onClick = {
-                    adSdk.trackEvent(AdEventType.AD_CLOSE)
                     onCloseCallback()
                 },
                 modifier = Modifier
@@ -81,14 +77,10 @@ private val fakeAdModel = AdModel(
 
 )
 
-private val fakeSdk: AdSdk = AdSdkImpl()
-
 @Preview
 @Composable
 fun AdScreenPreview() {
     AdSdkTheme {
-        AdScreen(fakeAdModel, fakeSdk) {
-
-        }
+        AdScreen(fakeAdModel, onClickCallback = {}, onCloseCallback = {})
     }
 }

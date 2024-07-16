@@ -10,12 +10,6 @@ object RetrofitProvider {
 
     val retrofit: Retrofit = provideRetrofit(provideOkHttpClient())
 
-    fun getRetrofitTracking(link: String): Retrofit =  Retrofit.Builder()
-        .baseUrl(link)
-        .client(provideOkHttpClient())
-        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-        .build()
-
     private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
