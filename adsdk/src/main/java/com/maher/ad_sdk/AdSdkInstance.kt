@@ -1,16 +1,15 @@
 package com.maher.ad_sdk
 
 import android.content.Context
-import com.maher.ad_sdk.AdSdk
-import com.maher.ad_sdk.AdSdkImpl
 import com.maher.ad_sdk.common.AdSdkException
 import com.maher.ad_sdk.common.AdSdkResponse
-import com.maher.ad_sdk.domain.AdEventType
+import com.maher.ad_sdk.di.AdSdkModule
 import com.maher.ad_sdk.domain.AdModel
+import com.maher.ad_sdk.domain.AdSdk
 import java.util.UUID
 
 object AdSdkInstance {
-    private val adSdk: AdSdk = AdSdkImpl()
+    private val adSdk: AdSdk = AdSdkModule.adSdk
 
     fun initialize(key: UUID) {
         adSdk.initialize(key)
@@ -31,15 +30,5 @@ object AdSdkInstance {
         } catch (e: AdSdkException) {
             AdSdkResponse.Error("error: ${e.message}")
         }
-    }
-
-    suspend fun trackEvent(event: AdEventType): AdSdkResponse<Unit> {
-        return try {
-            adSdk.trackEvent(event)
-            AdSdkResponse.Success(Unit)
-        } catch (e: AdSdkException) {
-            AdSdkResponse.Error("error: ${e.message}")
-        }
-
     }
 }

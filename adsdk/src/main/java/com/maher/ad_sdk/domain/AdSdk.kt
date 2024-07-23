@@ -1,13 +1,11 @@
-package com.maher.ad_sdk
+package com.maher.ad_sdk.domain
 
 import android.content.Context
 import com.maher.ad_sdk.common.AdSdkException
-import com.maher.ad_sdk.domain.AdEventType
-import com.maher.ad_sdk.domain.AdModel
 import java.util.UUID
 import kotlin.jvm.Throws
 
-internal interface AdSdk {
+interface AdSdk {
 
     /**
      * Initialize the ad SDK.
@@ -26,7 +24,6 @@ internal interface AdSdk {
      */
     @Throws(AdSdkException::class)
     suspend fun load(): AdModel
-
 
     suspend fun trackEvent(event: AdEventType)
 

@@ -1,4 +1,4 @@
-package com.maher.ad_sdk.data
+package com.maher.ad_sdk.data.network.retrofit
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
