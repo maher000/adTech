@@ -1,4 +1,4 @@
-package com.maher.ad_sdk.data
+package com.maher.ad_sdk.data.network.retrofit
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -9,12 +9,6 @@ object RetrofitProvider {
     private const val BASE_URL = "https://voodoo-adn-framework.s3.eu-west-1.amazonaws.com/test/"
 
     val retrofit: Retrofit = provideRetrofit(provideOkHttpClient())
-
-    fun getRetrofitTracking(link: String): Retrofit =  Retrofit.Builder()
-        .baseUrl(link)
-        .client(provideOkHttpClient())
-        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-        .build()
 
     private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
